@@ -29,7 +29,7 @@ return function (App $app) {
 
     // 新規投稿API
     $app->post('/api/page', function (Request $request, Response $response) {
-        $params = $request->getQueryParams();
+        $params = $request->getParsedBody();
         $title = $params['title'];
         $message = $params['message'];
 
