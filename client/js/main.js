@@ -34,6 +34,7 @@ $('#post').on('click', () => {
             "message": message
         }
     }).done(function(data){
+      alert('投稿完了しました。');
         window.location.reload();
     });
 });
@@ -51,15 +52,17 @@ $('.lists').on('click', '.edit', function() {
   
     // ボタンテキストを「編集」に変更
     // classに'update'を追加
-    $('#post').text('更新');
-    $('#post').addClass('update');
+    $('#post').css('display','none');
+    $('#update').css('display','block');
   
     // 更新を押したら、更新APIを叩く
-    $('.update').on('click', function() {
+    $('#update').on('click', function() {
+      title=$('#title'),val();
+      message=$('#message').val();
       // 更新APIを叩く
       $.ajax({
         type: 'PUT',
-        url: url,
+        url: url+'/update',
         data: {
           "id": $id,
           "title": title,

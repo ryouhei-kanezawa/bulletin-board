@@ -17,7 +17,7 @@ return function (App $app) {
     // 投稿一覧の取得API
     $app->get('/api/page', function (Request $request, Response $response) {
         // データベース操作
-        $link = mysqli_connect('localhost2', 'root', '', 'bulletin-board');
+        $link = mysqli_connect('localhost', 'root', '', 'bulletinboard');
         $result = mysqli_query($link, 'SELECT * FROM messages');
         $messages = mysqli_fetch_all($result);
         mysqli_close($link);
@@ -34,7 +34,7 @@ return function (App $app) {
         $message = $params['message'];
 
         // データベース操作
-        $link = mysqli_connect('localhost2', 'root', '', 'bulletin-board');
+        $link = mysqli_connect('localhost', 'root', '', 'bulletinboard');
         $stmt = mysqli_prepare($link, "INSERT INTO messages (title, message) VALUES (?, ?)");
         mysqli_stmt_bind_param($stmt, "ss", $title, $message);
         $result = mysqli_stmt_execute($stmt);
@@ -53,9 +53,9 @@ return function (App $app) {
         $message = $params['message'];
 
         // データベース操作
-        $link = mysqli_connect('localhost2', 'root', '', 'bulletin-board');
-        $stmt = mysqli_prepare($link, "UPDATE messages SET title = ?, message = ? WHERE id = ?");
-        mysqli_stmt_bind_param($stmt, "ssi", $title, $message, $id);
+        $link = mysqli_connect('localhost', 'root', '', 'bulletinboard');
+        $stmt = mysqli_prepare($link,"INSERT INTO messages (title, message) VALUES (?, ?)");
+        mysqli_stmt_bind_param($stmt, "ss", $title, $message, $id);
         $result = mysqli_stmt_execute($stmt);
         
         mysqli_close($link);
@@ -70,7 +70,7 @@ return function (App $app) {
         $id = $params['id'];
 
         // データベース操作
-        $link = mysqli_connect('localhost2', 'root', '', 'bulletin-board');
+        $link = mysqli_connect('localhost', 'root', '', 'bulletinboard');
         $stmt = mysqli_prepare($link, "DELETE FROM messages WHERE id = ?");
         mysqli_stmt_bind_param($stmt, "i", $id);
         $result = mysqli_stmt_execute($stmt);
