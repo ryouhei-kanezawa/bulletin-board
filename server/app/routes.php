@@ -17,11 +17,11 @@ return function (App $app) {
     // 投稿一覧の取得API
     $app->get('/api/page', function (Request $request, Response $response) {
         // データベース操作
-        $link = mysqli_connect('localhost', 'root', '', 'bulletin-board');
+        $link = mysqli_connect('mysql57.tcagame01.sakura.ne.jp', 'tcagame01', 'tcagame2021', 'tcagame01_20j70013');
         $result = mysqli_query($link, 'SELECT * FROM messages');
         $messages = mysqli_fetch_all($result);
         mysqli_close($link);
-
+        
         // 文字列（json形式）にして返す
         $response->getBody()->write(json_encode($messages, JSON_UNESCAPED_UNICODE));
         return $response;
@@ -30,12 +30,12 @@ return function (App $app) {
     // 新規投稿API
     $app->post('/api/page', function (Request $request, Response $response) {
         $params = $request->getParsedBody();
-
+        
         $title = $params['title'];
         $message = $params['message'];
 
         // データベース操作
-        $link = mysqli_connect('localhost', 'root', '', 'bulletin-board');
+        $link = mysqli_connect('mysql57.tcagame01.sakura.ne.jp', 'tcagame01', 'tcagame2021', 'tcagame01_20j70013');
         $stmt = mysqli_prepare($link, "INSERT INTO messages (title, message) VALUES (?, ?)");
         mysqli_stmt_bind_param($stmt, "ss", $title, $message);
         $result = mysqli_stmt_execute($stmt);
@@ -54,13 +54,13 @@ return function (App $app) {
         $message = $params['message'];
 
         // データベース操作
-        $link = mysqli_connect('localhost', 'root', '', 'bulletin-board');
+        $link = mysqli_connect('mysql57.tcagame01.sakura.ne.jp', 'tcagame01', 'tcagame2021', 'tcagame01_20j70013');
         $stmt = mysqli_prepare($link, "UPDATE messages SET title = ?, message = ? WHERE id = ?");
         mysqli_stmt_bind_param($stmt, "ssi", $title, $message, $id);
         $result = mysqli_stmt_execute($stmt);
         
         mysqli_close($link);
-
+        
         $response->getBody()->write(json_encode($result, JSON_UNESCAPED_UNICODE));
         return $response;
     });
@@ -71,7 +71,7 @@ return function (App $app) {
         $id = $params['id'];
 
         // データベース操作
-        $link = mysqli_connect('localhost', 'root', '', 'bulletin-board');
+        $link = mysqli_connect('mysql57.tcagame01.sakura.ne.jp', 'tcagame01', 'tcagame2021', 'tcagame01_20j70013');
         $stmt = mysqli_prepare($link, "DELETE FROM messages WHERE id = ?");
         mysqli_stmt_bind_param($stmt, "i", $id);
         $result = mysqli_stmt_execute($stmt);

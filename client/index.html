@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="wrapper">
-
+        
         <header>
             <h1>掲示板</h1>
         </header>
@@ -24,7 +24,8 @@
                 </div>
 
                 <div class="submit-button">
-                    <button>投稿</button>
+                    <button id="post" class="button">投稿</button>
+                    <button id="update" class="button">更新</button>
                 </div>
             </div>
 
@@ -32,48 +33,13 @@
 
             <div class="lists-block">
                 <h2>投稿一覧</h2>
-                <ul class="lists">
-                    <li class="card">
-                        <div class="left">
-                            こんにちは！
-                        </div>
-                        <div class="right">
-                            <div class="button-block">
-                                <button>編集</button>
-                                <button>削除</button>
-                            </div>
-                            <p class="name">たらこさん</p>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <div class="left">
-                            こんにちは！
-                        </div>
-                        <div class="right">
-                            <div class="button-block">
-                                <button>編集</button>
-                                <button>削除</button>
-                            </div>
-                            <p class="name">たらこさん</p>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <div class="left">
-                            こんにちは！
-                        </div>
-                        <div class="right">
-                            <div class="button-block">
-                                <button>編集</button>
-                                <button>削除</button>
-                            </div>
-                            <p class="name">たらこさん</p>
-                        </div>
-                    </li>
+                <ul id="lists" class="lists">
                 </ul>
             </div>
         </main>
 
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

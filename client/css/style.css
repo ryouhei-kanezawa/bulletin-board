@@ -52,3 +52,7 @@ main .card .right .name {
     margin-bottom: 0;
     display: inline-block;
 }
+
+#update {
+    display: none;
+}
